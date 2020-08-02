@@ -1,5 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
+import Timer from './common/Timer';
 
 class Root extends React.Component {
 	constructor(props) {
@@ -15,6 +16,8 @@ class Root extends React.Component {
 		return (
 			<div>
 				<p>Hello React!</p>
+				<Timer />
+			
 				<input type="text" onChange={this.onChange.bind(this)} />
 				<p>{ this.state.message }</p>
 			</div>
