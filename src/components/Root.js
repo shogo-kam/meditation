@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 
-class App extends React.Component {
+class Root extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {message: 'something'};
@@ -22,4 +22,4 @@ class App extends React.Component {
 	}
 }
 
-export default App;
+export default Root;
