@@ -4,7 +4,7 @@ import {render} from 'react-dom';
 class Timer extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {time:'10:00'};
+		this.state = {time: props.now };
 	}
 
 	render() {

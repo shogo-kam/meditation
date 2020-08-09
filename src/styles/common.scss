@@ -21,3 +21,19 @@ body {
 	}
 
 }
+
+.simple_btn {
+	width: 30px;
+	height: 30px;
+	border: 5px solid;
+	border-color:  transparent transparent #565656 #565656;
+	transform: rotate(-45deg);
+}
+
+.simple_btn:nth-child(2) {
+	width: 30px;
+	height: 30px;
+	border: 5px solid;
+	border-color: #565656 #565656 transparent transparent;
+	transform: rotate(-45deg);
+}
