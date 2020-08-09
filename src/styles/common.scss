@@ -1,4 +1,23 @@
-$body-color: red;
+$body-color: black;
 body {
 	color: $body-color;
+	background-color: lightgray;
+}
+
+#timer{
+	border:solid ;
+	border-width: 10px;
+	border-radius: 8px;
+	width:400px ;
+	height: 150x;
+	position: absolute;
+	top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+	p {
+		margin: 0px;
+		font-size: 100px;
+		text-align:center;
+	}
+
 }

@@ -9,7 +9,7 @@ class Timer extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div id="timer">
 				<p>{ this.state.time }</p>
 			</div>
 		);
