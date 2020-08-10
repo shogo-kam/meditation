@@ -10,21 +10,21 @@ class Root extends React.Component {
 		this.state = { now: moment({minutes: 10, seconds:0}).format('mm:ss') }; 
 	}
 
-	increasMinute() {
+	increaseMinute() {
 		this.setState({now: moment().add(1, 'minutes')});
 		console.log(`現在のステート ${this.state.now}`);
 	}
 
-	decreasMinute() {
+	decreaseMinute() {
 		alert('test2');
 	}
 
 	render() {
 		return (
 			<div>
-				<Button onClickEvent={this.increasMinute } />
+				<Button onClickEvent={this.increaseMinute } />
 				<Timer now={ this.state.now } />
-				<Button onClickEvent={this.decreasMinute } />
+				<Button onClickEvent={this.decreaseMinute } />
 			</div>
 		);
 	}
