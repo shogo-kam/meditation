@@ -10,12 +10,12 @@ class Timer extends React.Component {
 
 	// TODO: 値が 0 の時の 00 表記,
 	render() {
-		let min = Math.floor(this.props.now / ONE_MiN);
-		let sec = (this.props.now % ONE_MiN);
+		const min = Math.floor(this.props.now / ONE_MiN);
+		const sec = (this.props.now % ONE_MiN);
 
 		return (
 			<div id="timer">
-				<p>{ min + ":" + sec }</p>
+				<p>{ ('00' + min).slice(-2) + ":" + ('00' + sec).slice(-2) }</p>
 			</div>
 		);
 	}

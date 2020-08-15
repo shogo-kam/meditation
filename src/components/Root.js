@@ -6,6 +6,7 @@ import moment from 'moment';
 
 const MAX_T = 3600; // 60 min
 const MIN_T = 0;
+const DEF_T = 600;
 
 class Root extends React.Component {
 	constructor(props) {
@@ -13,7 +14,7 @@ class Root extends React.Component {
 		this.increaseMinute = this.increaseMinute.bind(this);
 		this.decreaseMinute = this.decreaseMinute.bind(this);
 		this.state = {
-			now: 600
+			now: DEF_T
 		}; 
 	}
 
