@@ -4,19 +4,37 @@ import Timer from './common/Timer';
 import Button from './common/Button';
 import moment from 'moment';
 
+const MAX_T = 3600; // 60 min
+const MIN_T = 0;
+
 class Root extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { now: moment({minutes: 10, seconds:0}).format('mm:ss') }; 
+		this.increaseMinute = this.increaseMinute.bind(this);
+		this.decreaseMinute = this.decreaseMinute.bind(this);
+		this.state = {
+			now: 600
+		}; 
 	}
 
 	increaseMinute() {
-		this.setState({now: moment().add(1, 'minutes')});
-		console.log(`現在のステート ${this.state.now}`);
+		if (this.state.now >= MAX_T) {
+			return;
+		}
+
+		this.setState({
+			now: this.state.now += 1
+		});
 	}
 
 	decreaseMinute() {
-		alert('test2');
+		if (this.state.now <= MIN_T) {
+			return;
+		}
+
+		this.setState({
+			now: this.state.now -= 1
+		});
 	}
 
 	render() {
