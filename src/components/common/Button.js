@@ -10,7 +10,7 @@ class Button extends React.Component {
 	render() {
 		return (
             <button
-                className={ "simple_btn "+this.props.mode}
+                className={ "simple_btn " + this.props.mode }
                 onClick={ this.props.onClickEvent.bind(this) }
             >
             </button>
