@@ -22,9 +22,9 @@ class Root extends React.Component {
 	render() {
 		return (
 			<div>
-				<Button onClickEvent={this.increaseMinute } />
+				<Button mode="up" onClickEvent={this.increaseMinute } />
 				<Timer now={ this.state.now } />
-				<Button onClickEvent={this.decreaseMinute } />
+				<Button mode="down" onClickEvent={this.decreaseMinute } />
 			</div>
 		);
 	}

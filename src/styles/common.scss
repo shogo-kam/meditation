@@ -23,17 +23,22 @@ body {
 }
 
 .simple_btn {
-	width: 30px;
-	height: 30px;
-	border: 5px solid;
-	border-color:  transparent transparent #565656 #565656;
-	transform: rotate(-45deg);
-}
-
-.simple_btn:nth-child(2) {
-	width: 30px;
-	height: 30px;
-	border: 5px solid;
-	border-color: #565656 #565656 transparent transparent;
-	transform: rotate(-45deg);
+	position: absolute;
+	width: 80px;
+	height: 80px;
+	border: 15px solid;
+	background-color:lightgray;
+	transform: translateY(50%) translateX(-50%) rotate(135deg);
+	outline:0;
+	cursor:pointer;
+	&.up {
+		top: 30%;
+		left: 50%;
+		border-color:  transparent transparent black black;
+	}
+	&.down {
+		top:56%;
+		left: 50%;
+		border-color:  black black transparent transparent;
+	}
 }
