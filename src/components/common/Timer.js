@@ -8,7 +8,6 @@ class Timer extends React.Component {
 		super(props);
 	}
 
-	// TODO: 値が 0 の時の 00 表記,
 	render() {
 		const min = Math.floor(this.props.now / ONE_MiN);
 		const sec = (this.props.now % ONE_MiN);
