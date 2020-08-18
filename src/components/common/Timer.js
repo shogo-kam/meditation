@@ -8,14 +8,23 @@ class Timer extends React.Component {
 		super(props);
 	}
 
-	// TODO: 値が 0 の時の 00 表記,
+	__frmt_time(u_time) {
+		return ('00' + u_time).slice(-2);
+	}
+
+	_prt_time(cur_time) {
+		const min = Math.floor(cur_time / ONE_MiN);
+		const sec = cur_time % ONE_MiN;
+		const time_formatted_str = this.__frmt_time(min) + ':' + this.__frmt_time(sec); 
+
+		return time_formatted_str;
+	}
+
 	render() {
-		const min = Math.floor(this.props.now / ONE_MiN);
-		const sec = (this.props.now % ONE_MiN);
 
 		return (
 			<div id="timer">
-				<p>{ ('00' + min).slice(-2) + ":" + ('00' + sec).slice(-2) }</p>
+				<p>{ this._prt_time(this.props.now) }</p>
 			</div>
 		);
 	}
