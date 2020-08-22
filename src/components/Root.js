@@ -2,11 +2,11 @@ import React from 'react';
 import {render} from 'react-dom';
 import Timer from './common/Timer';
 import Button from './common/Button';
-import moment, { max } from 'moment';
+import moment from 'moment';
 
 const MAX_T = 3600; // 60 min
 const MIN_T = 0;
-const DEF_T = 12;
+const DEF_T = 600;
 
 class Root extends React.Component {
 	constructor(props) {
