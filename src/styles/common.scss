@@ -28,17 +28,31 @@ body {
 	height: 80px;
 	border: 15px solid;
 	background-color:lightgray;
-	transform: translateY(50%) translateX(-50%) rotate(135deg);
 	outline:0;
 	cursor:pointer;
-	&.up {
-		top: 30%;
-		left: 50%;
+	&.secup {
+		top: 25%;
+		left: 55%;
 		border-color:  transparent transparent black black;
+		transform: translateY(50%) translateX(-50%) rotate(135deg);
 	}
-	&.down {
-		top:56%;
-		left: 50%;
+	&.secdown {
+		top: 56%;
+		left: 55%;
 		border-color:  black black transparent transparent;
+		transform: translateY(50%) translateX(-50%) rotate(135deg);
 	}
+	&.minup {
+		top: 25%;
+		left: 45%;
+		border-color:  transparent transparent black black;
+		transform: translateY(50%) translateX(-50%) rotate(135deg);
+	}
+	&.mindown {
+		top: 56%;
+		left: 45%;
+		border-color:  black black transparent transparent;
+		transform: translateY(50%) translateX(-50%) rotate(135deg);
+	}
+	
 }
