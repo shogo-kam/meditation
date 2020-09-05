@@ -2,7 +2,7 @@ import React from 'react';
 import {render} from 'react-dom';
 import Timer from './common/Timer';
 import Button from './common/Button';
-import moment from 'moment';
+import moment, { now } from 'moment';
 
 const MAX_T = 3600; // 60 min
 const MIN_T = 0;
@@ -15,6 +15,8 @@ class Root extends React.Component {
 		this.decreaseMinute = this.decreaseMinute.bind(this);
 		this.increaseSecond = this.increaseSecond.bind(this);
 		this.decreaseSecond = this.decreaseSecond.bind(this);
+		this.start			= this.start.bind(this);
+		this.stop			= this.stop.bind(this);
 		this.state = {
 			now: DEF_T
 		}; 
@@ -64,6 +66,26 @@ class Root extends React.Component {
 		});
 	}
 
+	start() {
+		this.timerID = setInterval(
+			() => this.tick(),
+			1000
+		);
+	}
+
+	stop() {
+		clearInterval(this.timerID);
+	}
+
+	tick() {
+		if (this.state.now <= MIN_T){ 
+			return;
+		}
+		this.setState({
+		now: this.state.now -=1
+	});
+	}
+
 	render() {
 		return (
 			<div>
@@ -72,6 +94,8 @@ class Root extends React.Component {
 				<Button mode="secdown" onClickEvent={this.decreaseSecond } />
 				<Button mode="minup" onClickEvent={this.increaseMinute } />
 				<Button mode="mindown" onClickEvent={this.decreaseMinute } />
+				<Button mode="start"  onClickEvent ={this.start} />
+				<Button mode="stop"  onClickEvent ={this.stop} />
 			</div>
 		);
 	}
