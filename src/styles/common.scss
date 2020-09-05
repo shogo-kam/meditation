@@ -42,33 +42,34 @@ body {
 	&.secup {
 		top: $up-top;
 		left: $sec-left;
-		border-color:  transparent transparent black black;
+		border-color:  transparent transparent $body-color $body-color;
 	}
 	&.secdown {
 		top: $down-top;
 		left: $sec-left;
-		border-color:  black black transparent transparent;
+		border-color:  $body-color $body-color transparent transparent;
 	}
 	&.minup {
 		top: $up-top;
 		left: $min-left;
-		border-color:  transparent transparent black black;
+		border-color:  transparent transparent $body-color $body-color;
 	}
 	&.mindown {
 		top: $down-top;
 		left: $min-left;
-		border-color:  black black transparent transparent;
+		border-color:  $body-color $body-color transparent transparent;
 	}
 	&.start {
 		top: $start-stop;
 		left: $start-left;
 		border: $start-border;
-		border-color:  black transparent transparent black ;
+		border-color:  $body-color transparent transparent $body-color ;
 	}
 	&.stop {
 		top: $start-stop;
 		left: $stop-left;
-		border-color:  black black transparent transparent black ;
+		transform: translateY(50%) translateX(-50%) ;
+		border-color:  $body-color $body-color transparent transparent $body-color ;
 	}
 
 }

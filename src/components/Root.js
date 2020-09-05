@@ -1,8 +1,6 @@
 import React from 'react';
-import {render} from 'react-dom';
 import Timer from './common/Timer';
 import Button from './common/Button';
-import moment, { now } from 'moment';
 
 const MAX_T = 3600; // 60 min
 const MIN_T = 0;
@@ -82,8 +80,8 @@ class Root extends React.Component {
 			return;
 		}
 		this.setState({
-		now: this.state.now -=1
-	});
+			now: this.state.now -=1
+		});
 	}
 
 	render() {
