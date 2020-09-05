@@ -1,4 +1,8 @@
 $body-color: black;
+$up-top:25%;
+$down-top:56%;
+$sec-left:55%;
+$min-left:45%;
 body {
 	color: $body-color;
 	background-color: lightgray;
@@ -28,17 +32,28 @@ body {
 	height: 80px;
 	border: 15px solid;
 	background-color:lightgray;
-	transform: translateY(50%) translateX(-50%) rotate(135deg);
 	outline:0;
+	transform: translateY(50%) translateX(-50%) rotate(135deg);
 	cursor:pointer;
-	&.up {
-		top: 30%;
-		left: 50%;
+	&.secup {
+		top: $up-top;
+		left: $sec-left;
 		border-color:  transparent transparent black black;
 	}
-	&.down {
-		top:56%;
-		left: 50%;
+	&.secdown {
+		top: $down-top;
+		left: $sec-left;
 		border-color:  black black transparent transparent;
 	}
+	&.minup {
+		top: $up-top;
+		left: $min-left;
+		border-color:  transparent transparent black black;
+	}
+	&.mindown {
+		top: $down-top;
+		left: $min-left;
+		border-color:  black black transparent transparent;
+	}
+
 }
