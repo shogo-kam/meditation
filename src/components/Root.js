@@ -100,13 +100,33 @@ class Root extends React.Component {
 	}
 
 	render() {
+		const buttons = {
+			secupButton: {
+				start: null,
+				stop: <Button mode="secup" onClickEvent={ this.increaseSecond } />,
+			},
+			secdownButton: {
+				start: null,
+				stop: <Button mode="secdown" onClickEvent={ this.decreaseSecond } />,
+			},
+			minupButton: {
+				start: null,
+				stop: <Button mode="minup" onClickEvent={ this.increaseMinute } />,
+			},
+			mindownButton: {
+				start: null,
+				stop: <Button mode="mindown" onClickEvent={ this.decreaseMinute } />,
+			},
+		};
+
+		const timerMode = this.state.timerMode;
 		return (
 			<div>
 				<Timer now={ this.state.now } />
-				<Button mode="secup" onClickEvent={this.increaseSecond } />
-				<Button mode="secdown" onClickEvent={this.decreaseSecond } />
-				<Button mode="minup" onClickEvent={this.increaseMinute } />
-				<Button mode="mindown" onClickEvent={this.decreaseMinute } />
+				{buttons.secupButton[timerMode]}
+				{buttons.secdownButton[timerMode]}
+				{buttons.minupButton[timerMode]}
+				{buttons.mindownButton[timerMode]}
 				<Button mode="start"  onClickEvent ={this.start} />
 				<Button mode="stop"  onClickEvent ={this.stop} />
 			</div>
