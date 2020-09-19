@@ -120,8 +120,6 @@ class Root extends React.Component {
 		};
 
 		const timerMode = this.state.timerMode;
-
-		const displayButtons = buttons[timerMode];
 		return (
 			<div>
 				<Timer now={ this.state.now } />
