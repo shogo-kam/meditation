@@ -2,7 +2,6 @@ import React from 'react';
 import Timer from './common/Timer';
 import Button from './common/Button';
 import AudioResources from '../common/AudioResources';
-import SelectMusic from './common/SelectMusic';
 
 const MAX_T = 3600; // 60 min
 const MIN_T = 0;
@@ -11,6 +10,14 @@ const TIMER_MODE = {
 	STOP: 'stop',
 	START: 'start',
 };
+
+const MUSIC_LIST = {
+	ETHNIC_01: 'ethnic_01',
+	HEALING_01: 'healing_01',
+	HEALING_04: 'healing_04',
+	HEALING_05: 'healing_05',
+	HEALING_06: 'healing_06',
+}
 
 class Root extends React.Component {
 	constructor(props) {
@@ -21,11 +28,10 @@ class Root extends React.Component {
 		this.decreaseSecond = this.decreaseSecond.bind(this);
 		this.start			= this.start.bind(this);
 		this.stop			= this.stop.bind(this);
-		this.showMusicSelectFrame = this.showMusicSelectFrame.bind(this);
 		this.state = {
 			now: DEF_T,
 			timerMode: TIMER_MODE.STOP,
-			isMusicSelectMode: false,
+			selectedMusic: MUSIC_LIST.ETHNIC_01,
 		};
 		this.audioResources = new AudioResources();
 		this.music = new Audio(this.audioResources.getSelectedMusic());
@@ -94,10 +100,13 @@ class Root extends React.Component {
 		this.setState({
 			timerMode: TIMER_MODE.STOP
 		});
+		// mock: 曲選択機能ができるまでのモック。一度停止すると曲を変更する。
+		this.musicChange();
 	}
 
 	tick() {
-		if (this.state.now <= MIN_T){ 
+		if (this.state.now <= MIN_T) {
+			this.stop();
 			return;
 		}
 		this.setState({
@@ -105,10 +114,23 @@ class Root extends React.Component {
 		});
 	}
 
-	showMusicSelectFrame() {
+	musicChange() {
 		this.setState({
-			isMusicSelectMode: ! this.state.isMusicSelectMode
+			selectedMusic: MUSIC_LIST.HEALING_01,
 		});
+	}
+
+	shouldComponentUpdate(nextProps, nextState) {
+		if(this.state != nextState) {
+
+			// 選択された音声が変わったら、再生する音声も変える
+			if(this.state.selectedMusic != nextState.selectedMusic) {
+				this.audioResources.selectMusic(nextState.selectedMusic);
+				this.music.src = this.audioResources.getSelectedMusic();
+			}
+			return true;
+		}
+		return false;
 	}
 
 	render() {
@@ -155,7 +177,6 @@ class Root extends React.Component {
 				{buttons.mindownButton[timerMode]}
 				{buttons.startButton[timerMode]}
 				{buttons.stopButton[timerMode]}
-				<SelectMusic isMusicSelectMode= { this.state.isMusicSelectMode } onClickEvent={ this.showMusicSelectFrame } />
 			</div>
 		);
 	}
