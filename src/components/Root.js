@@ -1,6 +1,7 @@
 import React from 'react';
 import Timer from './common/Timer';
 import Button from './common/Button';
+import ethnic from '../resources/ethnic_01.mp3';
 
 const MAX_T = 3600; // 60 min
 const MIN_T = 0;
@@ -118,6 +119,9 @@ class Root extends React.Component {
 				stop: <Button mode="mindown" onClickEvent={ this.decreaseMinute } />,
 			},
 		};
+
+		const music = new Audio(ethnic);
+		music.play();
 
 		const timerMode = this.state.timerMode;
 		return (
