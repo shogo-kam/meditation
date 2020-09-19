@@ -105,7 +105,8 @@ class Root extends React.Component {
 	}
 
 	tick() {
-		if (this.state.now <= MIN_T){ 
+		if (this.state.now <= MIN_T) {
+			this.stop();
 			return;
 		}
 		this.setState({
