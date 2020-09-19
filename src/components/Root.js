@@ -2,6 +2,7 @@ import React from 'react';
 import Timer from './common/Timer';
 import Button from './common/Button';
 import ethnic from '../resources/ethnic_01.mp3';
+import AudioResources from '../common/AudioResources';
 
 const MAX_T = 3600; // 60 min
 const MIN_T = 0;
@@ -23,7 +24,8 @@ class Root extends React.Component {
 		this.state = {
 			now: DEF_T,
 			timerMode: TIMER_MODE.STOP,
-		}; 
+		};
+		this.audioResources = new AudioResources();
 	}
 
 	increaseMinute() {
@@ -120,10 +122,14 @@ class Root extends React.Component {
 			},
 		};
 
-		const music = new Audio(ethnic);
-		music.play();
-
 		const timerMode = this.state.timerMode;
+		const music = new Audio(this.audioResources.getSelectedMusic());
+		if(timerMode == TIMER_MODE.START) {
+			music.play();
+		} else {
+			music.pause();
+		}
+
 		return (
 			<div>
 				<Timer now={ this.state.now } />
