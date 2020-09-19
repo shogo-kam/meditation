@@ -1,0 +1,15 @@
+.mask {
+	width: 100vw;
+	height: 100vh;
+	background-color: white;
+	opacity: 0.8;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 100;
+}
+
+.music-form {
+	position: absolute;
+	z-index: 120;
+}

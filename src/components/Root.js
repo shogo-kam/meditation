@@ -2,6 +2,7 @@ import React from 'react';
 import Timer from './common/Timer';
 import Button from './common/Button';
 import AudioResources from '../common/AudioResources';
+import SelectMusic from './common/SelectMusic';
 
 const MAX_T = 3600; // 60 min
 const MIN_T = 0;
@@ -28,9 +29,12 @@ class Root extends React.Component {
 		this.decreaseSecond = this.decreaseSecond.bind(this);
 		this.start			= this.start.bind(this);
 		this.stop			= this.stop.bind(this);
+		this.showMusicSelectFrame = this.showMusicSelectFrame.bind(this);
+		this.selectMusic	= this.selectMusic.bind(this);
 		this.state = {
 			now: DEF_T,
 			timerMode: TIMER_MODE.STOP,
+			isMusicSelectMode: false,
 			selectedMusic: MUSIC_LIST.ETHNIC_01,
 		};
 		this.audioResources = new AudioResources();
@@ -100,8 +104,6 @@ class Root extends React.Component {
 		this.setState({
 			timerMode: TIMER_MODE.STOP
 		});
-		// mock: 曲選択機能ができるまでのモック。一度停止すると曲を変更する。
-		this.musicChange();
 	}
 
 	tick() {
@@ -132,6 +134,18 @@ class Root extends React.Component {
 		}
 		return false;
 	}
+
+	showMusicSelectFrame() {
+		this.setState({
+			isMusicSelectMode: ! this.state.isMusicSelectMode
+		});
+	}
+
+	selectMusic(event) {
+		this.setState({selectedMusic: event.target.value});
+		this.showMusicSelectFrame();
+	}
+
 
 	render() {
 		const buttons = {
@@ -177,6 +191,12 @@ class Root extends React.Component {
 				{buttons.mindownButton[timerMode]}
 				{buttons.startButton[timerMode]}
 				{buttons.stopButton[timerMode]}
+				<SelectMusic
+					isMusicSelectMode= { this.state.isMusicSelectMode }
+					selectedMusic={ this.state.selectedMusic }
+					onClickEvent={ this.showMusicSelectFrame }
+					onChangeEvent={ this.selectMusic }
+				/>
 			</div>
 		);
 	}
