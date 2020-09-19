@@ -1,7 +1,6 @@
 import React from 'react';
 import Timer from './common/Timer';
 import Button from './common/Button';
-import ethnic from '../resources/ethnic_01.mp3';
 import AudioResources from '../common/AudioResources';
 
 const MAX_T = 3600; // 60 min
@@ -121,6 +120,14 @@ class Root extends React.Component {
 				start: null,
 				stop: <Button mode="mindown" onClickEvent={ this.decreaseMinute } />,
 			},
+			startButton: {
+				start: null,
+				stop: <Button mode="start"  onClickEvent ={this.start} />,
+			},
+			stopButton: {
+				start: <Button mode="stop"  onClickEvent ={this.stop} />,
+				stop: null,
+			},
 		};
 
 		const timerMode = this.state.timerMode;
@@ -137,8 +144,8 @@ class Root extends React.Component {
 				{buttons.secdownButton[timerMode]}
 				{buttons.minupButton[timerMode]}
 				{buttons.mindownButton[timerMode]}
-				<Button mode="start"  onClickEvent ={this.start} />
-				<Button mode="stop"  onClickEvent ={this.stop} />
+				{buttons.startButton[timerMode]}
+				{buttons.stopButton[timerMode]}
 			</div>
 		);
 	}
