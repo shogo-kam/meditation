@@ -29,6 +29,7 @@ class Root extends React.Component {
 		this.decreaseSecond = this.decreaseSecond.bind(this);
 		this.start			= this.start.bind(this);
 		this.stop			= this.stop.bind(this);
+		this.showMusicSelectFrame = this.showMusicSelectFrame.bind(this);
 		this.state = {
 			now: DEF_T,
 			timerMode: TIMER_MODE.STOP,
