@@ -5,6 +5,10 @@ import Button from './common/Button';
 const MAX_T = 3600; // 60 min
 const MIN_T = 0;
 const DEF_T = 600;
+const TIMER_MODE = {
+	STOP: 'stop',
+	START: 'start',
+};
 
 class Root extends React.Component {
 	constructor(props) {
@@ -16,7 +20,8 @@ class Root extends React.Component {
 		this.start			= this.start.bind(this);
 		this.stop			= this.stop.bind(this);
 		this.state = {
-			now: DEF_T
+			now: DEF_T,
+			timerMode: TIMER_MODE.STOP,
 		}; 
 	}
 
@@ -65,14 +70,24 @@ class Root extends React.Component {
 	}
 
 	start() {
-		this.timerID = setInterval(
-			() => this.tick(),
-			1000
-		);
+		if(this.state.timerMode == TIMER_MODE.STOP) {
+			this.timerID = setInterval(
+				() => this.tick(),
+				1000
+			);
+			this.setState({
+				timerMode: TIMER_MODE.START
+			});
+		}
 	}
 
 	stop() {
-		clearInterval(this.timerID);
+		if(this.state.timerMode == TIMER_MODE.START) {
+			clearInterval(this.timerID);
+		}
+		this.setState({
+			timerMode: TIMER_MODE.STOP
+		});
 	}
 
 	tick() {
