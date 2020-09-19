@@ -104,8 +104,6 @@ class Root extends React.Component {
 		this.setState({
 			timerMode: TIMER_MODE.STOP
 		});
-		// mock: 曲選択機能ができるまでのモック。一度停止すると曲を変更する。
-		// this.musicChange();
 	}
 
 	tick() {
