@@ -15,37 +15,29 @@ class SelectMusic extends React.Component {
         super(props);
 	}
 
-    handleChange(event) {
-        this.setState({value: event.target.value});
-      }
+   	handleChange(event) {
+        	this.setState({value: event.target.value});
+      	}
     
-      handleSubmit(event) {
-        alert('A name was submitted: ' + this.state.value);
-        event.preventDefault();
-      }
-      
 	render() {
-        const isMusicSelectMode = this.props.isMusicSelectMode;
 
         // for (let key in MUSIC_LIST ) {
         //     alert('key:' + key + ' value:' + MUSIC_LIST[key]);
         // }
 
         const select_music_form = (
-            <form onSubmit={this.handleSubmit}>
-                <label>
+        	<label>
                 Pick your favorite flavor:
                 <select value={this.state.value} onChange={this.handleChange}>
-
                     <option value="grapefruit">Grapefruit</option>
                     <option value="lime">Lime</option>
                     <option value="coconut">Coconut</option>
                     <option value="mango">Mango</option>
                 </select>
                 </label>
-                <input type="submit" value="Submit" />
-            </form>
         );
+
+        const isMusicSelectMode = this.props.isMusicSelectMode;
         const mask = isMusicSelectMode ? <div className="mask" onClick={ this.props.onClickEvent.bind(this) }> {select_music_form} </div> : null;
 
         return (

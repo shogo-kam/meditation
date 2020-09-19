@@ -2,6 +2,7 @@ import React from 'react';
 import Timer from './common/Timer';
 import Button from './common/Button';
 import AudioResources from '../common/AudioResources';
+import SelectMusic from './common/SelectMusic';
 
 const MAX_T = 3600; // 60 min
 const MIN_T = 0;
@@ -31,6 +32,7 @@ class Root extends React.Component {
 		this.state = {
 			now: DEF_T,
 			timerMode: TIMER_MODE.STOP,
+			isMusicSelectMode: false,
 			selectedMusic: MUSIC_LIST.ETHNIC_01,
 		};
 		this.audioResources = new AudioResources();
@@ -133,6 +135,12 @@ class Root extends React.Component {
 		return false;
 	}
 
+	showMusicSelectFrame() {
+		this.setState({
+			isMusicSelectMode: ! this.state.isMusicSelectMode
+		});
+	}
+
 	render() {
 		const buttons = {
 			secupButton: {
@@ -177,6 +185,7 @@ class Root extends React.Component {
 				{buttons.mindownButton[timerMode]}
 				{buttons.startButton[timerMode]}
 				{buttons.stopButton[timerMode]}
+				<SelectMusic isMusicSelectMode= { this.state.isMusicSelectMode } onClickEvent={ this.showMusicSelectFrame } />
 			</div>
 		);
 	}
