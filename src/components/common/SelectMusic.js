@@ -16,11 +16,14 @@ class SelectMusic extends React.Component {
         this.state = {
             value: 'grapefruit'
         };
+        this.onClickEvent = this.props.onClickEvent.bind(this);
+        this.handleChange = this.handleChange.bind(this);
 	}
 
-   	handleChange(event) {
-        	this.setState({value: event.target.value});
-      	}
+    handleChange(event) {
+        this.setState({value: event.target.value});
+        this.onClickEvent();
+    }
     
 	render() {
 
@@ -28,8 +31,10 @@ class SelectMusic extends React.Component {
         //     alert('key:' + key + ' value:' + MUSIC_LIST[key]);
         // }
 
-        const select_music_form = (
-        	<label>
+        const isMusicSelectMode = this.props.isMusicSelectMode;
+        const mask = isMusicSelectMode ? <div className="mask" onClick={ this.onClickEvent }></div> : null;
+        const select_music_form = isMusicSelectMode ? (
+            <label className="music-form">
                 Pick your favorite flavor:
                 <select value={ this.state.value } onChange={this.handleChange}>
                     <option value="grapefruit">Grapefruit</option>
@@ -37,17 +42,15 @@ class SelectMusic extends React.Component {
                     <option value="coconut">Coconut</option>
                     <option value="mango">Mango</option>
                 </select>
-                </label>
-        );
+            </label>
+        ) : null;
 
-        const isMusicSelectMode = this.props.isMusicSelectMode;
-        const mask = isMusicSelectMode ? <div className="mask" onClick={ this.props.onClickEvent.bind(this) }> {select_music_form} </div> : null;
 
         return (
             <div>
                 <input name="a" type="text" value={ isMusicSelectMode } disabled="disabled" />
-                <button id="music" onClick={ this.props.onClickEvent.bind(this) }> Select Music </button>
-            
+                <button id="music" onClick={ this.onClickEvent }> Select Music </button>
+                {select_music_form}
                 {mask}
             </div>
 		);
