@@ -1,5 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
+import '../../styles/SelectMusic.scss';
 
 class SelectMusic extends React.Component {
 	constructor(props) {
@@ -9,16 +10,14 @@ class SelectMusic extends React.Component {
 	render() {
         const isMusicSelectMode = this.props.isMusicSelectMode;
 
-        const mask = <div> aaa </div>
-        const lodingMask = isMusicSelectMode ?
-                        <div> aaa </div> : mask;
+        const mask = isMusicSelectMode ? <div className="mask" onClick={ this.props.onClickEvent.bind(this) }></div> : null;
 
         return (
             <div>
                 <input name="a" type="text" value={ isMusicSelectMode } disabled="disabled" />
                 <button id="music" onClick={ this.props.onClickEvent.bind(this) }> Select Music </button>
             
-                {lodingMask}
+                {mask}
             </div>
 		);
 	}
