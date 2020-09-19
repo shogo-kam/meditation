@@ -26,6 +26,7 @@ class Root extends React.Component {
 			timerMode: TIMER_MODE.STOP,
 		};
 		this.audioResources = new AudioResources();
+		this.music = new Audio(this.audioResources.getSelectedMusic());
 	}
 
 	increaseMinute() {
@@ -123,11 +124,10 @@ class Root extends React.Component {
 		};
 
 		const timerMode = this.state.timerMode;
-		const music = new Audio(this.audioResources.getSelectedMusic());
 		if(timerMode == TIMER_MODE.START) {
-			music.play();
+			this.music.play();
 		} else {
-			music.pause();
+			this.music.pause();
 		}
 
 		return (
