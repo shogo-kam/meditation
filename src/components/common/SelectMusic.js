@@ -13,34 +13,24 @@ const MUSIC_LIST = {
 class SelectMusic extends React.Component {
 	constructor(props) {
         super(props);
-        this.state = {
-            value: 'grapefruit'
-        };
         this.onClickEvent = this.props.onClickEvent.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        this.onChangeEvent = this.props.onChangeEvent.bind(this);
 	}
 
-    handleChange(event) {
-        this.setState({value: event.target.value});
-        this.onClickEvent();
-    }
     
 	render() {
-
-        // for (let key in MUSIC_LIST ) {
-        //     alert('key:' + key + ' value:' + MUSIC_LIST[key]);
-        // }
+        let options = [];
+        Object.keys(MUSIC_LIST).forEach((_key) => {
+            options.push(<option value={MUSIC_LIST[_key]}>{_key}</option>);
+        });
 
         const isMusicSelectMode = this.props.isMusicSelectMode;
         const mask = isMusicSelectMode ? <div className="mask" onClick={ this.onClickEvent }></div> : null;
         const select_music_form = isMusicSelectMode ? (
             <label className="music-form">
-                Pick your favorite flavor:
-                <select value={ this.state.value } onChange={this.handleChange}>
-                    <option value="grapefruit">Grapefruit</option>
-                    <option value="lime">Lime</option>
-                    <option value="coconut">Coconut</option>
-                    <option value="mango">Mango</option>
+                Pick your favorite music:
+                <select value={ this.props.selectedMusic } onChange={ this.onChangeEvent }>
+                    {options}
                 </select>
             </label>
         ) : null;
@@ -48,7 +38,7 @@ class SelectMusic extends React.Component {
 
         return (
             <div>
-                <input name="a" type="text" value={ isMusicSelectMode } disabled="disabled" />
+                <input name="a" type="text" value={ this.props.selectedMusic } disabled="disabled" />
                 <button id="music" onClick={ this.onClickEvent }> Select Music </button>
                 {select_music_form}
                 {mask}

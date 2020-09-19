@@ -30,6 +30,7 @@ class Root extends React.Component {
 		this.start			= this.start.bind(this);
 		this.stop			= this.stop.bind(this);
 		this.showMusicSelectFrame = this.showMusicSelectFrame.bind(this);
+		this.selectMusic	= this.selectMusic.bind(this);
 		this.state = {
 			now: DEF_T,
 			timerMode: TIMER_MODE.STOP,
@@ -104,7 +105,7 @@ class Root extends React.Component {
 			timerMode: TIMER_MODE.STOP
 		});
 		// mock: 曲選択機能ができるまでのモック。一度停止すると曲を変更する。
-		this.musicChange();
+		// this.musicChange();
 	}
 
 	tick() {
@@ -141,6 +142,12 @@ class Root extends React.Component {
 			isMusicSelectMode: ! this.state.isMusicSelectMode
 		});
 	}
+
+	selectMusic(event) {
+		this.setState({selectedMusic: event.target.value});
+		this.showMusicSelectFrame();
+	}
+
 
 	render() {
 		const buttons = {
@@ -186,7 +193,12 @@ class Root extends React.Component {
 				{buttons.mindownButton[timerMode]}
 				{buttons.startButton[timerMode]}
 				{buttons.stopButton[timerMode]}
-				<SelectMusic isMusicSelectMode= { this.state.isMusicSelectMode } onClickEvent={ this.showMusicSelectFrame } />
+				<SelectMusic
+					isMusicSelectMode= { this.state.isMusicSelectMode }
+					selectedMusic={ this.state.selectedMusic }
+					onClickEvent={ this.showMusicSelectFrame }
+					onChangeEvent={ this.selectMusic }
+				/>
 			</div>
 		);
 	}
